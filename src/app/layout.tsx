@@ -1,4 +1,3 @@
-// File: src/app/layout.tsx
 import React from 'react';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
