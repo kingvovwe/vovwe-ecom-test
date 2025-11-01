@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-gray-900 antialiased;
+  }
+
+  
+  :root {
+    --color-primary: #1a1a1a;
+    --color-secondary: #f0f0f0;
+    --color-accent: #3b82f6; 
+    
+  }
+}
+
+
+@layer utilities {
+  .container-max {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
