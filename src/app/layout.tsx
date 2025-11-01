@@ -9,11 +9,10 @@ import Header from '@/components/layout/Header';
 import TopBanner from '@/components/layout/TopBanner';
 import AuthModal from '@/components/auth/AuthModal';
 import CartModal from '@/components/cart/CartModal';
-import SearchModal from '@/components/search/SearchModal'; // <-- ADD THIS
+import SearchModal from '@/components/search/SearchModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
-// --- ADDED metadata ---
 export const metadata = {
   title: 'Vovwe Ecommerce',
   description: 'A modern ecommerce storefront.',
@@ -30,7 +29,7 @@ export default function RootLayout({
         <Toaster position="top-center" reverseOrder={false} />
         <AuthModal />
         <CartModal />
-        <SearchModal /> {/* <-- ADD THIS */}
+        <SearchModal />
         
         <div className="flex flex-col min-h-screen">
           <TopBanner />
@@ -38,7 +37,6 @@ export default function RootLayout({
           
           
           <main className="flex-grow">
-            {/* --- UPDATED: Removed the extra Suspense --- */}
             {children}
           </main>
           <Footer />
