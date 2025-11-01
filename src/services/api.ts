@@ -9,20 +9,16 @@ import {
   AuthResponse,
 } from '@/types';
 
-
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
+// const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL; // <-- REMOVED
 
 export async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch(`${BASE_URL}/products`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    } as any);
+    const res = await fetch(`/api/products`);
 
     if (!res.ok) {
       throw new Error(`API Error: Failed to fetch products (${res.status})`);
     }
-    
+
     const data = await res.json();
     return data.products as Product[];
   } catch (error) {
@@ -40,15 +36,13 @@ export async function getProductById(
   }
 
   try {
-    const res = await fetch(`${BASE_URL}/products/${productId}`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    } as any);
+    const res = await fetch(`/api/products/${productId}`);
 
     if (!res.ok) {
-      if (res.status === 404) return null; // Correctly handle 404
+      if (res.status === 404) return null;
       throw new Error(`API Error: Failed to fetch product ${productId} (${res.status})`);
     }
-    
+
     const data = await res.json();
     return data as Product;
   } catch (error) {
@@ -59,9 +53,7 @@ export async function getProductById(
 
 export async function getCategories(): Promise<Category[]> {
   try {
-    const res = await fetch(`${BASE_URL}/categories`, {
-      next: { revalidate: 86400 }, // Cache for 24 hours
-    } as any);
+    const res = await fetch(`/api/categories`);
 
     if (!res.ok) {
       throw new Error(`API Error: Failed to fetch categories (${res.status})`);
@@ -84,14 +76,12 @@ export async function getProductsByCategory(
   }
 
   try {
-    const res = await fetch(`${BASE_URL}/categories/${categoryName}/products`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    } as any);
+    const res = await fetch(`/api/categories/${categoryName}/products`);
 
     if (!res.ok) {
       throw new Error(`API Error: Failed to fetch products for category ${categoryName} (${res.status})`);
     }
-    
+
     const data = await res.json();
     return data.products as Product[];
   } catch (error) {
